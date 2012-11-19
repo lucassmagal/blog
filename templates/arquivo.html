@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Arquivo - L. S. Magalhães
+{% endblock %}
+
+{% block content %}
+<section>
+    <header>
+        <h2>Arquivo</h2>
+    </header>
+
+    <section id="posts">
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="/post/{{ post.slug }}">{{ post.title }}</a>
+                    <date class="index">{{ post.published }}</date>
+                </li>
+            {% endfor %}
+        </ul>
+    </section>
+</section>
+{% endblock %}

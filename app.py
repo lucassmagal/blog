@@ -32,7 +32,8 @@ def post(title):
 
 @app.route('/arquivo/')
 def arquivo():
-    return render_template('arquivo.html')
+    posts = (p for p in pages if 'published' in p.meta)
+    return render_template('arquivo.html', posts=posts)
 
 
 @app.route('/sobre/')
