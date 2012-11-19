@@ -17,6 +17,13 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 
+@freezer.register_generator
+def post():
+    posts = (p for p in pages if 'published' in p.meta)
+    for post in posts:
+        yield {'title': post['slug']}
+
+
 @app.route('/')
 def index():
     posts = (p for p in pages if 'published' in p.meta)
@@ -46,5 +53,4 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'build':
         freezer.freeze()
     else:
-        port = int(os.environ.get('PORT', 8000))
-        app.run(host='0.0.0.0', port=port)
+        app.run(port=8000)

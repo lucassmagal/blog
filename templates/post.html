@@ -7,7 +7,7 @@
 {% block content %}
 <section>
     <header>
-        <h2><a href="/post/{{ post.slug }}/">{{ post.title }}</a></h2>
+        <h2><a href="{{ url_for('post', title= post.slug) }}">{{ post.title }}</a></h2>
         <date class="post">{{ post.published }}</date>
     </header>
 
@@ -38,7 +38,7 @@
 <nav id="article-bottom-nav">
     <ul>
         <li><a class="icon-home" href="http://www.lsmagalhaes.com/">&nbsp;Home</a></li>
-        <li><a class="icon-box" href="/arquivo/">&nbsp;Arquivo</a></li>
+        <li><a class="icon-box" href="{{ url_for('arquivo') }}">&nbsp;Arquivo</a></li>
         <li><a class="icon-mail" href="mailto:me@lsmagalhaes.com">&nbsp;Contato</a></li>
     </ul>
 </nav>

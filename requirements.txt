@@ -3,5 +3,7 @@ Flask==0.9
 Frozen-Flask==0.9
 Jinja2==2.6
 Markdown==2.2.1
+paramiko==1.9.0
+pycrypto==2.6
 PyYAML==3.10
 Werkzeug==0.8.3
