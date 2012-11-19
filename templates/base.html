@@ -2,6 +2,8 @@
 <html lang="pt-br">
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width; initial-scale=1; maximum-scale=1" />
 
     <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet" type="text/css" />
     <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Quattrocento+Sans|Source+Code+Pro' rel='stylesheet' type='text/css'>    <link href="{{ url_for('static', filename='less/styles.less') }}" rel="stylesheet/less" type="text/css" />
@@ -27,7 +29,7 @@
         {% block content %}
         {% endblock %}
 
-        <footer>
+        <footer id="footer">
             <p xmlns:dct="http://purl.org/dc/terms/">
                 Blog escrito por
                 <a rel="dct:publisher" href="http://www.lsmagalhaes.com">
@@ -51,9 +53,15 @@
             moment.lang('pt-br');
             hljs.initHighlightingOnLoad();
 
-            $('date').each(function() {
+            $('date.index').each(function() {
                 var date = $(this).text();
                 var pretty_date = moment(date).fromNow();
+                $(this).html(pretty_date);
+            });
+
+            $('date.post').each(function() {
+                var date = $(this).text();
+                var pretty_date = moment(date).format("DD MMMM YYYY");
                 $(this).html(pretty_date);
             });
         });

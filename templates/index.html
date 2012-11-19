@@ -21,7 +21,10 @@
     <ul>
         <li><a class="icon-user" href="/sobre/">&nbsp;Sobre</a></li>
         <li><a class="icon-box" href="/arquivo/">&nbsp;Arquivo</a></li>
+        <li><a class="icon-mail" href="mailto:me@lsmagalhaes.com">&nbsp;Contato</a></li>
     </ul>
+
+    <div class="clear"></div>
 </nav>
 {% endblock %}
 
@@ -38,7 +41,7 @@
         {% for post in posts %}
             <li>
                 <a href="/post/{{ post.slug }}">{{ post.title }}</a>
-                <date>{{ post.published }}</date>
+                <date class="index">{{ post.published }}</date>
             </li>
         {% endfor %}
     </ul>
