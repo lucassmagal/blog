@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
 import sys
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
@@ -45,4 +46,5 @@ if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'build':
         freezer.freeze()
     else:
-        app.run(port=8000)
+        port = int(os.environ.get('PORT', 8000))
+        app.run(host='0.0.0.0', port=port)
