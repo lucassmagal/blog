@@ -1,0 +1,248 @@
+/* VARIAVEIS */
+
+@special-font: 'Julius Sans One';
+@normal-font: 'Quattrocento Sans';
+
+@text-color: #323230;
+@title-color: #4180AB;
+@subtitle-color: #8AB3CF;
+@shadow-color: #E4EBF0;
+@link-color: #E14D35;
+@well-box-color: #F9F9E6;
+
+/* MIXINS */
+
+.border-box () {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.shadow (@init) {
+    @end: @init + 1px;
+
+    text-shadow: @init @init 0px @shadow-color,
+                 @end @end 0px @shadow-color;
+}
+
+/* TAGS */
+
+body {
+    font-family: @normal-font, sans-serif;
+    font-size: 18px;
+    line-height: 2em;
+    letter-spacing: 0.5px;
+    color: @text-color;
+}
+
+h1 {
+    .shadow(0px);
+
+    font-family: @special-font, sans-serif;
+    font-size: 1.2em;
+
+    a {
+        text-decoration: none;
+        color: @title-color;
+
+        &:active {
+            color: @link-color;
+        }
+    }
+}
+
+section h2 {
+    .shadow(1px);
+
+    font-family: @special-font, sans-serif;
+    color: @title-color;
+    font-size: 2.8em;
+    line-height: 1.2em;
+
+    a {
+        text-decoration: none;
+        color: @title-color;
+
+        &:active {
+            color: @link-color;
+        }
+    }
+}
+
+h3 {
+    font-family: @special-font, sans-serif;
+    color: @title-color;
+    font-size: 1em;
+}
+
+article p:first-child:first-line {
+    font-size: 1.4em;
+}
+
+a {
+    color: @link-color;
+}
+
+footer {
+    .border-box;
+
+    padding: 5px;
+    margin: 20px 0 40px 0;
+    background: @well-box-color;
+    color: @title-color;
+    font-size: 14px;
+    text-align: center;
+}
+
+code {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 0.9em;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* CLASSES E IDS */
+
+.container {
+    .border-box;
+
+    width: 100%;
+    min-width: 300px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 5px 0 5px;
+}
+
+#about p {
+    font-size: 1.4em;
+}
+
+#most-recent-posts {
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+
+        li {
+            margin: 15px 0;
+        }
+
+        a {
+            font-size: 1.2em;
+            text-decoration: none;
+            color: @text-color;
+            font-weight: bold;
+            padding-right: 20px;
+
+            &:hover {
+                color: @link-color;
+            }
+        }
+    }
+}
+
+nav {
+    font-size: 1.4em;
+    margin: 40px 0 40px 0;
+
+    ul {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        list-style: none;
+
+        li {
+            .border-box;
+
+            display: inline-block;
+            background: @shadow-color;
+            width: 49%;
+            margin-right: 1%;
+            padding: 5px;
+            text-align: center;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: @title-color;
+                text-decoration: none;
+
+                &:active {
+                    color: @link-color;
+                }
+            }
+        }
+    }
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    section h2 {
+        font-size: 2em;
+    }
+
+    #about {
+        display: none;
+    }
+
+    nav ul li {
+        display: block;
+        width: 100%;
+        margin: 0 0 10px 0;
+    }
+
+    footer {
+        font-size: 12px;
+    }
+
+    code {
+        font-size: 1em;
+    }
+
+    #most-recent-posts a {
+        display: block;
+    }
+}
+
+/* ICOMOON */
+
+@font-face {
+    font-family: 'icomoon';
+    src:url('../fonts/icomoon.eot');
+    src:url('../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+        url('../fonts/icomoon.svg#icomoon') format('svg'),
+        url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+[class^="icon-"]:before, [class*=" icon-"]:before {
+    font-family: 'icomoon';
+    font-style: normal;
+    speak: none;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}
+.icon-box:before {
+    content: "\e001";
+}
+.icon-home:before {
+    content: "\e002";
+}
+.icon-mail:before {
+    content: "\e003";
+}
+.icon-user:before {
+    content: "\e004";
+}
