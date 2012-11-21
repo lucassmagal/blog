@@ -41,6 +41,8 @@ def post(title):
 @app.route('/arquivo/')
 def arquivo():
     posts = (p for p in pages if 'published' in p.meta)
+    posts = sorted(posts, reverse=True,
+                   key=lambda p: p.meta['published'])
     return render_template('arquivo.html', posts=posts)
 
 
