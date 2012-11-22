@@ -31,14 +31,15 @@ também ajudam bastante, como o Django. A partir daí, é ler e praticar mesmo.
 
 Por que falo isso? Pra mim, é fundamental saber interpretar os errors e
 warnings de um sistema, um dos passos pra se tornar *ninja* em uma linguagem,
-e em programação em geral.
-
-A propósito, stack traces só ajudam a encontrar bugs em tempo de execução...
+e em programação em geral. A propósito, stack traces só ajudam a encontrar
+bugs em tempo de execução...
 mas na hora da compilação não tem segredo, é a mesma regra: leia e procure
 entender. A documentação da linguagem provavelmente já documenta o que significa
 cada erro e ter noção das Exceptions da biblioteca padrão da linguagem contribui
 muito pra descobrir o que ocorreu - tipo as <code>NullPointerException</code>
-que me fizeram sofrer pra entregar um trabalho em Java. Bônus: se você programa
-em C, mesmo na faculdade, o compilador Clang exibe
+que me fizeram sofrer pra entregar um trabalho em Java. Exceptions são, inclusive,
+um assunto que quero abordar em um post futuro.
+
+Bônus: se você programa em C, mesmo na faculdade, o compilador Clang exibe
 mensagens de erro mais inteligíveis que o GCC.
 
