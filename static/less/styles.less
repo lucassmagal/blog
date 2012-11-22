@@ -35,6 +35,17 @@ body {
     color: @text-color;
 }
 
+blockquote {
+    .border-box;
+
+    background: @well-box-color;
+    padding: 5px 5px 5px 15px;
+    margin: 0 0 0 5%;
+    width: 95%;
+    font-size: 0.9em;
+    border-left: 2px solid @subtitle-color;
+}
+
 h1 {
     .shadow(0px);
 
@@ -204,7 +215,23 @@ nav {
             &:hover {
                 color: @link-color;
             }
+
+            &.via {
+                padding-right: 5px;
+                font-weight: normal;
+            }
         }
+
+
+    }
+}
+
+a.via {
+    padding-right: 0;
+    font-weight: normal;
+
+    &:hover {
+        color: @link-color;
     }
 }
 
@@ -237,7 +264,7 @@ nav {
         font-size: 1em;
     }
 
-    #posts a {
+    #posts span {
         display: block;
     }
 }
