@@ -51,6 +51,14 @@ def sobre():
     return render_template('sobre.html')
 
 
+@app.route('/atom.xml/')
+def atom_feed():
+    posts = (p for p in pages if 'published' in p.meta)
+    posts = sorted(posts, reverse=True,
+                   key=lambda p: p.meta['published'])
+    return render_template('atom.xml', update_date=posts[0]['published'], posts=posts)
+
+
 if __name__ == '__main__':
     if len(sys.argv) > 1 and sys.argv[1] == 'build':
         freezer.freeze()

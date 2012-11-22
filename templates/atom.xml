@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ <title>L. S. Magalhães</title>
+ <link href="http://lsmagalhaes/atom.xml" rel="self"/>
+ <link href="http://lsmagalhaes.com/"/>
+ <updated>{{ update_date }}</updated>
+ <id>http://lsmagalhaes.com/</id>
+ <author>
+   <name>Lucas Sampaio</name>
+   <email>me@lsmagalhaes.com</email>
+ </author>
+
+ {% for post in posts %}
+ <entry>
+   <title>{{ post.title }}</title>
+   <link href="http://lsmagalhaes.com/post/{{ post.slug }}/"/>
+   <updated>{{ post.published }}</updated>
+   <id>http://lsmagalhaes.com/post/{{ post.slug }}/</id>
+   <content type="html">{{ post.html }}</content>
+ </entry>
+ {% endfor %}
+
+</feed>
