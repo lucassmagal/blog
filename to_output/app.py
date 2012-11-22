@@ -15,9 +15,13 @@ def index():
 
 
 @app.route('/<path:path>/')
-def application(path):
-    path = "build/%s/index.html" % path
-    return send_file(path, cache_timeout=60)
+def path(path):
+    if path == 'atom.xml':
+        return send_file('build/atom.xml/index.html',
+                         mimetype="application/atom+xml",
+                         cache_timeout=60)
+
+    return send_file('build/%s/index.html' % path, cache_timeout=60)
 
 
 if __name__ == '__main__':
