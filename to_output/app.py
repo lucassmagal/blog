@@ -9,9 +9,9 @@ app = Flask(__name__, static_folder='build/static')
 app.config.from_object(__name__)
 
 
-# @app.route('/')
-# def index():
-#     return send_file('build/index.html', cache_timeout=60)
+@app.route('/')
+def index():
+    return send_file('build/index.html', cache_timeout=60)
 
 
 @app.route('/<path:path>/')
