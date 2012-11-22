@@ -14,7 +14,12 @@ Arquivo - L. S. Magalhães
         <ul>
             {% for post in posts %}
                 <li>
-                    <a href="{{ url_for('post', title= post.slug) }}">{{ post.title }}</a>
+                    {% if post.link %}
+                        <a class="via" href="{{ url_for('post', title= post.slug) }}">&#x1525;</a>
+                        <a href="{{ post.link }}">{{ post.title }}</a>
+                    {% else %}
+                        <a href="{{ url_for('post', title= post.slug) }}">{{ post.title }}</a>
+                    {% endif %}
                     <date class="index">{{ post.published }}</date>
                 </li>
             {% endfor %}
