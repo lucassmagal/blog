@@ -139,10 +139,67 @@ pre code {
     font-size: 0.9em;
 }
 
+#posts {
+    margin: 0 0 40px 0;
+}
+
+#posts ul {
+    padding: 0;
+    list-style: none;
+}
+
+    #posts ul li {
+        margin: 15px 0;
+    }
+
+    #posts ul a {
+        text-decoration: none;
+        padding-right: 20px;
+    }
+
+    #posts ul a.via {
+        padding-right: 5px;
+        font-weight: normal;
+    }
+
 .clear {
     clear: both;
 }
 
 .comments {
-    margin: 60px 0 60px 0;
+    margin: 40px 0 40px 0;
+}
+
+#footer {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    padding: 5px;
+    margin-bottom: 40px;
+    text-align: center;
+    background: #F7F4E9;
+}
+
+    #footer a {
+        color: #FF7943;
+    }
+
+@media screen and (max-width: 600px) {
+    body {
+        font-size: 14px;
+    }
+
+    nav ul li {
+        display: block;
+        margin-left: 20px;
+    }
+
+    h2 {
+        font-size: 1.6em;
+    }
+
+    #posts span {
+        display: block;
+    }
 }
