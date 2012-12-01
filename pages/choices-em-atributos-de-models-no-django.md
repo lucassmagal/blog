@@ -50,7 +50,8 @@ idéia. O que ocorre se eu mudar a sigla do Acre, de AC para AR, seja lá qual
 for a razão, e me esquecer de atualizar o atributo? Provavelmente acabarei com
 um bug. A opção 2 resolve o problema
 anterior, mas índices numéricos não são nada legíveis
-neste caso. Você saberia a qual estado ESTADOS[12][0] se refere, de cara? Eu não.
+neste caso. Você saberia a qual estado <code>ESTADOS[12][0]</code>
+se refere, de cara? Eu não.
 Nos resta a opção 3, que é a sugerida na documentação do Django. Bastante legível
 e *DRY*, mas, neste exemplo dos estados, me obrigaria a escrever muito código.
 
@@ -59,8 +60,6 @@ ao segundo problema que enfrento: eu terei
 que referenciar um ou outro estado, eventualmente, em outras porções do código.
 Como fazer? Hardcoded está fora de questão. As opções 2 ou 3 resolvem, mas
 e se usássemos um dict para representar os estados?
-
-Faria como? ESTADOS[0][0]? Opção 3, AC?
 
 <pre><code class="python">
 ESTADOS = {
@@ -73,7 +72,8 @@ estado = models.CharField(max_length=2, choices=ESTADOS, default=ESTADOS['Acre']
 </code></pre>
 
 Legal, melhorou. Resolveu meu problema de referenciamento tornando meu código
-mais legível, ESTADOS['Acre'] retorna 'AC', que é um valor válido para o banco
+mais legível, <code>ESTADOS['Acre']</code> retorna 'AC', que é um valor válido
+para o banco
 de dados e é facilmente entendível por um humano. E fica mais fácil trabalhar
 com as opções de estados em outras porções de código.
 
