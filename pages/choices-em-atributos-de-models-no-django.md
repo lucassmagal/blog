@@ -6,7 +6,7 @@ No Django é possível especificar um conjunto de opções para um atributo de u
 model, o [Choices](https://docs.djangoproject.com/en/1.4/ref/models/fields/#choices).
 Em resumo, esta é a sintaxe:
 
-<pre><code class="Python">
+<pre><code class="python">
 class Foo(models.Model):
     ESTADOS = (
         ('AC', 'Acre'),
@@ -23,10 +23,10 @@ as opções descritas em ESTADOS, sendo que o segundo elemento das tuplas,
 o nome dos estados, será exibido no HTML, e o primeiro elemento, as siglas,
 é o que será armazenado no banco de dados.
 
-É possível, naturalmente, especificar um *default* para um campo com
+É possível especificar também um *default* para um campo com
 choices. É aí que está o primeiro dos problemas que eu enfrento, vejam:
 
-<pre><code class="Python">
+<pre><code class="python">
 # Opção 1, hardcoded
 estado = models.CharField(max_length=2, choices=ESTADOS, default='AC')
 
@@ -45,21 +45,24 @@ ESTADOS = (
 estado = models.CharField(max_length=2, choices=ESTADOS, default=AC)
 </code></pre>
 
-Nem preciso comentar a opção 1, escrever *hardcoded* a opção default não é
-uma boa ideia, afinal, se eu mudar as siglas por qualquer razão, de 'AC' pra
-'AR', por exemplo, provavelmente acabarei com um bug. A opção 2 resolve o problema
- anterior, mas índices numéricos não são nada legíveis
+A opção 1, definir a opção default de forma *hardcoded*, é geralmente uma péssima
+idéia. O que ocorre se eu mudar a sigla do Acre, de AC para AR, seja lá qual
+for a razão, e me esquecer de atualizar o atributo? Provavelmente acabarei com
+um bug. A opção 2 resolve o problema
+anterior, mas índices numéricos não são nada legíveis
 neste caso. Você saberia a qual estado ESTADOS[12][0] se refere, de cara? Eu não.
 Nos resta a opção 3, que é a sugerida na documentação do Django. Bastante legível
 e *DRY*, mas, neste exemplo dos estados, me obrigaria a escrever muito código.
 
 Isso não ocorre só na hora de definir uma opção default, o que me leva
 ao segundo problema que enfrento: eu terei
-que referenciar a um ou outro estado, eventualmente, em outras porções do código.
-Faria como? ESTADOS[0][0]? Opção 3, AC? Curtiria muito usar dicts pra isso, se
-liga:
+que referenciar um ou outro estado, eventualmente, em outras porções do código.
+Como fazer? Hardcoded está fora de questão. As opções 2 ou 3 resolvem, mas
+e se usássemos um dict para representar os estados?
 
-<pre><code class="Python">
+Faria como? ESTADOS[0][0]? Opção 3, AC?
+
+<pre><code class="python">
 ESTADOS = {
     'Acre': 'AC',
     'Alagoas': 'AL'
@@ -71,15 +74,15 @@ estado = models.CharField(max_length=2, choices=ESTADOS, default=ESTADOS['Acre']
 
 Legal, melhorou. Resolveu meu problema de referenciamento tornando meu código
 mais legível, ESTADOS['Acre'] retorna 'AC', que é um valor válido para o banco
-de dados e é facilmente entendível por um humano. Fica mais fácil trabalhar
-com as opções de estados em outras porções de código, também.
+de dados e é facilmente entendível por um humano. E fica mais fácil trabalhar
+com as opções de estados em outras porções de código.
 
-Mas, você já deve ter notado, o Django não aceita um dict como default, pois
+Mas, você já deve ter notado que o Django não aceita um dict como default, pois
 não é um iterable. Outro detalhe: no Django, o valor que deve ser armazenado
 no banco de dados deve ser o primeiro da chave-valor, e no exemplo acima eu
-fiz uma inversão. Como resolver, então? Assim:
+fiz uma inversão. Como resolver então? Assim:
 
-<pre><code class="Python">
+<pre><code class="python">
 def choices(_dict):
     return [(value, key) for key, value in _dict.items()]
 
