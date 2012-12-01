@@ -8,11 +8,9 @@
     <link rel="alternate" type="application/atom+xml" href="atom.xml" title="L. S. Magalhães Atom feed">
 
     <link href="{{ url_for('static', filename='css/normalize.css') }}" rel="stylesheet" type="text/css" />
-    <link href='http://fonts.googleapis.com/css?family=Julius+Sans+One|Quattrocento+Sans|Source+Code+Pro' rel='stylesheet' type='text/css'>    <link href="{{ url_for('static', filename='less/styles.less') }}" rel="stylesheet/less" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,900|Vollkorn' rel='stylesheet' type='text/css'>    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="http://yandex.st/highlightjs/7.3/styles/solarized_dark.min.css">
 
-    <script src="{{ url_for('static', filename='js/less-1.3.1.min.js') }}"></script>
-    <!--[if lte IE 7]><script src="{ url_for('static', filename='js/lte-ie7.js') }}"></script><![endif]-->
     <!--[if lt IE 9]>
     <script src="dist/html5shiv.js"></script>
     <![endif]-->
@@ -20,14 +18,20 @@
     <title>{% block title %}L. S. Magalhães{% endblock %}</title>
 </head>
 <body>
-    <div class="container">
-        <header>
+    <header>
+        <div class="container border-box">
             <h1><a href="http://www.lsmagalhaes.com/">L. S. Magalhães</a></h1>
 
-            {% block header %}
-            {% endblock %}
-        </header>
-
+            <nav>
+                <ul>
+                    <li><a class="icon-user" href="{{ url_for('sobre') }}">Sobre</a></li>
+                    <li><a class="icon-box" href="{{ url_for('arquivo') }}">Arquivo</a></li>
+                    <li><a class="icon-mail" href="mailto:me@lsmagalhaes.com">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container border-box">
         {% block content %}
         {% endblock %}
 
@@ -55,13 +59,7 @@
             moment.lang('pt-br');
             hljs.initHighlightingOnLoad();
 
-            $('date.index').each(function() {
-                var date = $(this).text();
-                var pretty_date = moment(date).fromNow();
-                $(this).html(pretty_date);
-            });
-
-            $('date.post').each(function() {
+            $('date').each(function() {
                 var date = $(this).text();
                 var pretty_date = moment(date).format("DD MMMM YYYY");
                 $(this).html(pretty_date);

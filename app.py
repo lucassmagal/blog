@@ -29,7 +29,8 @@ def index():
     posts = (p for p in pages if 'published' in p.meta)
     latest = sorted(posts, reverse=True,
                     key=lambda p: p.meta['published'])
-    return render_template('index.html', posts=latest[:10])
+    recent = latest[0]
+    return render_template('index.html', post=recent, posts=latest[1:10])
 
 
 @app.route('/post/<string:title>/')

@@ -1,0 +1,132 @@
+.border-box {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.container {
+    width: 100%;
+    min-width: 320px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 5px 0 5px;
+}
+
+body {
+    font-family: 'Vollkorn', serif;
+    font-size: 18px;
+    line-height: 1.8em;
+    color: #1C1B1D;
+    background: #FFFCF2;
+}
+
+h1,h2,h3,h4,h5,h6,nav {
+    font-family: 'Lato', sans-serif;
+    text-transform: uppercase;
+}
+
+body>header {
+    background: #F94439;
+    margin: 0;
+}
+
+a {
+    color: #666662;
+}
+
+a:hover {
+    color: #FF7943;
+}
+
+h1 {
+    margin: 0;
+    padding: 0.4em 0 0.4em 0;
+    margin-right: 25px;
+    letter-spacing: 1.2px;
+    font-size: 1.2em;
+    display: inline;
+}
+
+    h1 a {
+        text-decoration: none;
+        color: #FFFCF2;
+    }
+
+    h1 a:hover {
+        color: #1C1B1D;
+    }
+
+    h1 a:active {
+        text-decoration: underline;
+    }
+
+nav {
+    font-size: 1.2em;
+    display: inline;
+}
+
+    nav ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        display: inline;
+    }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: #FFFCF2;
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            color: #1C1B1D;
+        }
+
+        nav ul li a:active {
+            text-decoration: underline;
+        }
+
+h2 {
+    font-size: 2em;
+}
+
+    h2 a {
+        text-decoration: none;
+        color: #1C1B1D;
+    }
+
+    h2 a:hover {
+        color: #666662;
+        text-decoration: underline;
+    }
+
+    h2 a:active {
+        color: #FF7943;
+    }
+
+blockquote {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+
+    background: #F7F4E9;
+    padding: 5px 5px 5px 15px;
+    margin: 0 0 0 5%;
+    width: 95%;
+    font-size: 0.9em;
+    border-left: 2px solid #FF7943;
+}
+
+#post date {
+    float: right;
+    color: #666662;
+    font-size: 0.9em;
+}
+
+.clear {
+    clear: both;
+}

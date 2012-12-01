@@ -1,39 +1,43 @@
 {% extends 'base.html' %}
 
-{% block header %}
-<section id="about">
-    <p>
-        Opa, beleza? Me chamo <em>Lucas Sampaio</em> e sou desenvolvedor
-        web lá na <a href="https://www.orama.com.br/">Órama</a>, onde
-        programo em <code>Python</code>, <code>Django</code> e faço umas pontas
-        no front-end, escrevendo, obviamente, <code>HTML</code>,
-        <code>CSS</code> e <code>Javascript</code>.
-    </p>
-    <p>
-        Nas horas vagas também programo em <code>Ruby</code> e <code>Rails</code>,
-        além de uma ou outra linguagem, só pra aprender. Tá na lista estudar
-        <code>clojure</code>, <code>perl</code>, <code>smalltalk</code>,
-        <code>erlang</code>...
-    </p>
-</section>
-
-<nav>
-    <ul>
-        <li><a class="icon-user" href="{{ url_for('sobre') }}">&nbsp;Sobre</a></li>
-        <li><a class="icon-box" href="{{ url_for('arquivo') }}">&nbsp;Arquivo</a></li>
-        <li><a class="icon-mail" href="mailto:me@lsmagalhaes.com">&nbsp;Contato</a></li>
-    </ul>
+{% block content %}
+<section id="post">
+    <header>
+        <h2>
+            {% if post.link %}
+                <a class="via" href="{{ url_for('post', title= post.slug) }}">&#x1525;</a>
+                <a href="{{ post.link }}">{{ post.title }}</a>
+            {% else %}
+                <a href="{{ url_for('post', title= post.slug) }}">{{ post.title }}</a>
+                <span class="clear"></span>
+            {% endif %}
+        </h2>
+        <date>{{ post.published }}</date>
+    </header>
 
     <div class="clear"></div>
-</nav>
-{% endblock %}
 
-{% block content %}
-<header>
+    <article>
+        {{ post.html | safe }}
+    </article>
 
+    <footer class="comments">
+        <div id="disqus_thread"></div>
+        <script type="text/javascript">
+            /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+            var disqus_shortname = 'lsmagalhes'; // required: replace example with your forum shortname
 
-</header>
-
+            /* * * DON'T EDIT BELOW THIS LINE * * */
+            (function() {
+                var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+        <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    </footer>
+</section>
 <section id="posts">
     <h2>Os dez mais recentes</h2>
 
@@ -48,7 +52,7 @@
                         <a href="{{ url_for('post', title= post.slug) }}">{{ post.title }}</a>
                     {% endif %}
                 </span>
-                <date class="index">{{ post.published }}</date>
+                <date>{{ post.published }}</date>
             </li>
         {% endfor %}
     </ul>
