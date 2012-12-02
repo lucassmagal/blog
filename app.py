@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-import os
 import sys
 from flask import Flask, render_template
 from flask_flatpages import FlatPages
@@ -17,6 +16,19 @@ pages = FlatPages(app)
 freezer = Freezer(app)
 
 
+def _key(page):
+    n = page.meta['published'].toordinal()
+    if 'order' in page.meta:
+        n += int(page.meta['order'])
+
+    return n
+
+
+def _posts(pages):
+    posts = (p for p in pages if 'published' in p.meta)
+    return sorted(posts, reverse=True, key=lambda p: _key(p))
+
+
 @freezer.register_generator
 def post():
     posts = (p for p in pages if 'published' in p.meta)
@@ -26,11 +38,8 @@ def post():
 
 @app.route('/')
 def index():
-    posts = (p for p in pages if 'published' in p.meta)
-    latest = sorted(posts, reverse=True,
-                    key=lambda p: p.meta['published'])
-    recent = latest[0]
-    return render_template('index.html', post=recent, posts=latest[1:10])
+    posts = _posts(pages)
+    return render_template('index.html', post=posts[0], posts=posts[1:10])
 
 
 @app.route('/post/<string:title>/')
@@ -41,10 +50,7 @@ def post(title):
 
 @app.route('/arquivo/')
 def arquivo():
-    posts = (p for p in pages if 'published' in p.meta)
-    posts = sorted(posts, reverse=True,
-                   key=lambda p: p.meta['published'])
-    return render_template('arquivo.html', posts=posts)
+    return render_template('arquivo.html', posts=_posts(pages))
 
 
 @app.route('/sobre/')
@@ -54,10 +60,9 @@ def sobre():
 
 @app.route('/atom.xml/')
 def atom_feed():
-    posts = (p for p in pages if 'published' in p.meta)
-    posts = sorted(posts, reverse=True,
-                   key=lambda p: p.meta['published'])
-    return render_template('atom.xml', update_date=posts[0]['published'], posts=posts)
+    posts = _posts(pages)
+    return render_template('atom.xml', update_date=posts[0]['published'],
+                           posts=posts)
 
 
 if __name__ == '__main__':

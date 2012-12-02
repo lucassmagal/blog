@@ -2,6 +2,7 @@ title: Coding Without Comments
 published: 2012-11-26
 slug: coding-without-comments
 link: http://www.codinghorror.com/blog/2008/07/coding-without-comments.html
+order: 2
 
 Volta e meia me aparecem uns artigos do [CodingHorror](www.codinghorror.com)
 pra ler, *sempre tem* um ou outro que linka um artigo dele como referência.
@@ -13,9 +14,9 @@ de comentários pra que outro desenvolvedor entenda com clareza o que está
 ocorrendo. O código-fonte já é o suficiente, afinal, pra mostrar como
 algo funciona.
 
-> I'm constantly running across comments from developers who don't seem 
-> to understand that the code already tells us how it works; **we need the 
-> comments to tell us why it works**. Code comments are so widely 
+> I'm constantly running across comments from developers who don't seem
+> to understand that the code already tells us how it works; **we need the
+> comments to tell us why it works**. Code comments are so widely
 > misunderstood and abused that you might find yourself wondering if
 > they're worth using at all. Be careful what you wish for.
 
