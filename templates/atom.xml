@@ -18,7 +18,7 @@
    <id>http://lsmagalhaes.com/post/{{ post.slug }}/</id>
    <content type="html">
         {% if post.link %}
-            {{ '<h1><a href="' + post.link + '">&#x1525;&nbsp;' + post.title +  '</a></h1>'|e }}
+            {{ '<h1><a href="http://lsmagalhaes.com/post/' + post.slug + '">&#x1525;</a>&nbsp;<a href="' +post.link +'">' + post.title + '</a></h1>'|e }}
         {% endif %}
         {{ post.html }}
         {{ '<a href="' + url_for('post', title=post.slug) + '#disqus_thread">&rarr; Comentários</a>'|e }}
